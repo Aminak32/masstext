@@ -6,6 +6,9 @@ from time import sleep
 with open("gateways.txt", "r") as f:
     gateways = f.readlines()
 
+with open("numbers.txt", "r") as f:
+    num_cout = len(f.readlines())
+
 gmail_user = input("Gmail Username: ")
 gmail_password = getpass.getpass()
 sent_from = gmail_user
@@ -23,7 +26,8 @@ with open("numbers.txt", "r") as numbers:
         print("Sending to {}".format(num))
         for gateway in gateways:
             to = num + "@" + gateway
-            msg = 'From : {}\nTo: {}\nSubject: {}\n\n{}'.format(gmail_user, to, subject, message)
+            msg = 'From : {}\nTo: {}\nSubject: {}\n\n{}'.\
+                   format(gmail_user, to, subject, message)
             try:
                 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
                 server.ehlo()
