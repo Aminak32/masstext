@@ -1,14 +1,15 @@
 import os
 import smtplib
+import getpass
 from time import sleep
 
 with open("gateways.txt", "r") as f:
     gateways = f.readlines()
 
-gmail_user = input("Please enter your Gmail email: ")
-gmail_password = input("Please enter your password: ")
+gmail_user = input("Gmail Username: ")
+gmail_password = getpass.getpass()
 sent_from = gmail_user
-subject = input("Please enter a subject: ") 
+subject = input("Please enter a subject: ")
 
 with open("message.txt", "r") as message_file:
     message = message_file.read().replace('\n', '')
