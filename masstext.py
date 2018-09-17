@@ -4,13 +4,8 @@ import getpass
 from time import sleep
 from progress.bar import Bar
 
-def main():
-    with open("gateways.txt", "r") as f:
-        gateways = f.readlines()
-
-    with open("numbers.txt", "r") as f:
-        num_count = len(f.readlines())
-
+def main(contact_info):
+    num_count = len(contact_info)
     gmail_user = input("Gmail Username: ")
     gmail_password = getpass.getpass()
     sent_from = gmail_user
@@ -46,4 +41,7 @@ def main():
                         sent_file.write("{}\n".format(num))
 
 if __name__ == "__main__":
+    with open("numbers.txt", "r") as f:
+        num_count = len(f.readlines())
+
     main()
