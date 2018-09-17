@@ -1,7 +1,7 @@
-vmobl.com
-vtext.com
-tmomail.net
-messaging.sprintpcs.com
-mymetropcs.com
-myboostmobile.com
-txt.att.net
+vmobl.com,VMOBILE
+vtext.com,VERIZON
+tmomail.net,TMOBILE
+messaging.sprintpcs.com,SPRINT
+mymetropcs.com,METROPCS
+myboostmobile.com,BOOSTMOBILE
+txt.att.net,ATT
