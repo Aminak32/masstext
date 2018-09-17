@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
 import smtplib
 import getpass
 from progress.bar import Bar
-
 
 def main(contacts, message):
     num_count = len(contacts)
@@ -15,14 +13,14 @@ def main(contacts, message):
     sent_from = gmail_user
     progress_bar = Bar("Sending...", max=num_count)
 
-    with open("gateways.txt", "r") as gfile:
+    with open("data/gateways.txt", "r") as gfile:
         gways = [l.strip() for l in gfile.readlines()]
 
     gateways = {l.split(',')[1]: l.split(',')[0] for l in gways}
 
     for (num, carrier) in contacts:
         try:
-            with open("sent.txt", "r") as sent_file:
+            with open("data/sent.txt", "r") as sent_file:
                 if num in [a.strip() for a in sent_file.readlines()]:
                     print("Skipping: {}".format(num))
                     continue
@@ -44,16 +42,16 @@ def main(contacts, message):
             print("Failed to send!")
             sent = False
         if sent:
-            with open("sent.txt", "a+") as sent_file:
+            with open("data/sent.txt", "a+") as sent_file:
                 sent_file.write("{}\n".format(num))
             progress_bar.next()
 
 
 if __name__ == "__main__":
-    with open("contacts.txt", 'r') as cfile:
+    with open("data/contacts.txt", 'r') as cfile:
         CLINES = [l.strip() for l in cfile.readlines()]
         CONTACTS = [(l.split(',')[0], l.split(',')[1]) for l in CLINES]
 
-    with open("message.txt", "r") as message_file:
+    with open("data/message.txt", "r") as message_file:
         MESSAGE = message_file.read().replace('\n', '')
     main(CONTACTS, MESSAGE)
