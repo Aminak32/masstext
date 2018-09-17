@@ -6,6 +6,7 @@ import smtplib
 import getpass
 from progress.bar import Bar
 
+
 def main(contacts, message):
     num_count = len(contacts)
     gmail_user = input("Gmail Username: ")
@@ -17,7 +18,7 @@ def main(contacts, message):
     with open("gateways.txt", "r") as gfile:
         gways = [l.strip() for l in gfile.readlines()]
 
-    gateways = {l.split(',')[1] : l.split(',')[0] for l in gways}
+    gateways = {l.split(',')[1]: l.split(',')[0] for l in gways}
 
     for (num, carrier) in contacts:
         try:
@@ -31,7 +32,7 @@ def main(contacts, message):
         gateway = gateways[carrier]
         recepient = num + "@" + gateway
         msg = 'From : {}\nTo: {}\nSubject: {}\n\n{}'.\
-               format(gmail_user, recepient, subject, message)
+            format(gmail_user, recepient, subject, message)
         try:
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
             server.ehlo()
@@ -39,13 +40,14 @@ def main(contacts, message):
             server.sendmail(sent_from, recepient, msg)
             server.close()
             sent = True
-        except:
+        except BaseException:
             print("Failed to send!")
             sent = False
         if sent:
             with open("sent.txt", "a+") as sent_file:
                 sent_file.write("{}\n".format(num))
             progress_bar.next()
+
 
 if __name__ == "__main__":
     with open("contacts.txt", 'r') as cfile:
