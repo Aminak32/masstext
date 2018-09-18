@@ -18,6 +18,11 @@ To use masstext, two txt files must be created in the ```data``` directory
 
 Examples of both of these files can be found in the data directory
 
+## Carriers
+
+A carrier must be one of the following: VMOBILE, VERIZON, TMOBILE, SPRINT, METROPCS, BOOSTMOBILE, ATT. 
+To add a carrier, append a string of the form x,y to ```data/gateways.txt``` where x is a carrier and y is its SMS gateway. 
+
 ## Example Usage
 
 Once you've created ```data/contacts.txt``` and ```data/message.txt```, simply
